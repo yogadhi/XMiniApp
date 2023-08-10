@@ -3,3 +3,8 @@
 ################################################################################
 
 /XMiniApp/bin/Debug/netstandard2.0
+/XMiniApp/obj
+/XMiniApp.Android/bin/Debug
+/XMiniApp.Android/obj
+/XMiniApp.iOS/bin/iPhone/Debug
+/XMiniApp.iOS/obj

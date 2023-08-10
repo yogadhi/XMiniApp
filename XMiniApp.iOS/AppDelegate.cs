@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using ProgressRingControl.Forms.Plugin.iOS;
 using UIKit;
 
 namespace XMiniApp.iOS
@@ -24,6 +25,8 @@ namespace XMiniApp.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
+
+            ProgressRingRenderer.Init();
 
             return base.FinishedLaunching(app, options);
         }

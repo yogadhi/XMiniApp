@@ -3,12 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XMiniApp.Views.AboutPage"
              xmlns:vm="clr-namespace:XMiniApp.ViewModels"
+             xmlns:xfpinview="clr-namespace:XFPINView;assembly=XFPINView"
+             xmlns:control="clr-namespace:ProgressRingControl.Forms.Plugin;assembly=ProgressRing.Forms.Plugin"
              Title="{Binding Title}">
-    
     <ContentPage.BindingContext>
         <vm:AboutViewModel />
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="Accent">#96d1ff</Color>
@@ -18,16 +19,29 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
-                    <Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="64" />
+                <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <!--<Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="64" />-->
+                    <control:ProgressRing RingThickness="10" HorizontalOptions="Center"  AnimationLength="4000" AnimatedProgress="0.75" />
                 </ContentView>
             </StackLayout>
         </StackLayout>
-        <ScrollView Grid.Row="1">
+        <StackLayout Grid.Row="1" Spacing="15">
+            
+            <xfpinview:PINView
+                x:Name="existingPINView"
+                BoxFocusAnimation="ZoomInOut"
+                PINValue="{Binding CurrentOTP}"
+                BoxShape="Squere"
+                IsPassword="False"
+                IsEnabled="False"
+                PINLength="6"/>
+        </StackLayout>
+        <ScrollView Grid.Row="2">
             <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
                 <Label Text="Start developing now" FontSize="Title"/>
                 <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="0,0,0,0"/>
