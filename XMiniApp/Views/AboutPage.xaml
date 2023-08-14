@@ -16,51 +16,63 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+
+    <StackLayout HorizontalOptions="FillAndExpand"
+                 VerticalOptions="FillAndExpand"
+                 Padding="5,5">
+        <Grid HorizontalOptions="FillAndExpand"
+              VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+
+
+            <StackLayout Grid.Row="0" BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                    <!--<Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="64" />-->
-                    <control:ProgressRing RingThickness="10" HorizontalOptions="Center"  AnimationLength="4000" AnimatedProgress="0.75" />
+                    <Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="64" />
                 </ContentView>
             </StackLayout>
-        </StackLayout>
-        <StackLayout Grid.Row="1" Spacing="15">
-            
-            <xfpinview:PINView
-                x:Name="existingPINView"
-                BoxFocusAnimation="ZoomInOut"
-                PINValue="{Binding CurrentOTP}"
-                BoxShape="Squere"
-                IsPassword="False"
-                IsEnabled="False"
-                PINLength="6"/>
-        </StackLayout>
-        <ScrollView Grid.Row="2">
-            <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                <Label Text="Start developing now" FontSize="Title"/>
-                <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="0,0,0,0"/>
-                <Label FontSize="16" Padding="0,24,0,0">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span Text="Learn more at "/>
-                                <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <Button Margin="0,10,0,0" Text="Learn more"
-                        Command="{Binding OpenWebCommand}"
-                        BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" />
-            </StackLayout>
-        </ScrollView>
-    </Grid>
 
+            <Label Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding cTimer}" TextColor="Black" FontSize="50"/>
+            <control:ProgressRing Margin="10,10" Grid.Row="1" HeightRequest="200" HorizontalOptions="Start" RingThickness="10" RingProgressColor="LightGreen" AnimationEasing="BounceOut" AnimatedProgress="{Binding Progress,Mode=TwoWay}" />
+
+            <StackLayout Grid.Row="2" Padding="10,10">
+                <Label TextColor="Black" Text="Google:yogadhiprananda@gmail.com" FontSize="16" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Start"/>
+                <xfpinview:PINView x:Name="existingPINView"
+                                   BoxFocusAnimation="ZoomInOut"
+                                   PINValue="{Binding CurrentOTP}"
+                                   BoxShape="Squere"
+                                   IsPassword="False"
+                                   IsEnabled="False"
+                                   PINLength="6"/>
+            </StackLayout>
+
+
+
+
+            <!--<ScrollView Grid.Row="2">
+                <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
+                    <Label Text="Start developing now" FontSize="Title"/>
+                    <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="0,0,0,0"/>
+                    <Label FontSize="16" Padding="0,24,0,0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Learn more at "/>
+                                    <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Button Margin="0,10,0,0" Text="Learn more"
+                    Command="{Binding OpenWebCommand}"
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White" />
+                </StackLayout>
+            </ScrollView>-->
+        </Grid>
+    </StackLayout>
 </ContentPage>
