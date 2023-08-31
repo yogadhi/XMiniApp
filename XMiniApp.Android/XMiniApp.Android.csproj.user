@@ -5,5 +5,6 @@
     <SelectedPlatformGroup>PhysicalDevice</SelectedPlatformGroup>
     <ActiveDebugProfile>Samsung SM-A715F %28Android 13.0 - API 33%29</ActiveDebugProfile>
     <DefaultDevice>pixel_5_-_api_30</DefaultDevice>
+    <AndroidDesignerPreferredTheme>MainTheme</AndroidDesignerPreferredTheme>
   </PropertyGroup>
 </Project>

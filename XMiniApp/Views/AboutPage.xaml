@@ -23,21 +23,20 @@
         <Grid HorizontalOptions="FillAndExpand"
               VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="50" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+            
 
-
-
-            <StackLayout Grid.Row="0" BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <!--<StackLayout Grid.Row="0" BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                     <Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="64" />
                 </ContentView>
-            </StackLayout>
+            </StackLayout>-->
 
-            <Label Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding cTimer}" TextColor="Black" FontSize="50"/>
-            <control:ProgressRing Margin="10,10" Grid.Row="1" HeightRequest="200" HorizontalOptions="Start" RingThickness="10" RingProgressColor="LightGreen" AnimationEasing="BounceOut" AnimatedProgress="{Binding Progress,Mode=TwoWay}" />
+            <Label Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding CTimer}" TextColor="Black" FontSize="70"/>
+            <control:ProgressRing Margin="10,10" Grid.Row="1" HeightRequest="200" HorizontalOptions="Start" RingThickness="10" RingProgressColor="{Binding ProgressColor}" AnimationEasing="BounceOut" AnimatedProgress="{Binding Progress,Mode=TwoWay}" />
 
             <StackLayout Grid.Row="2" Padding="10,10">
                 <Label TextColor="Black" Text="Google:yogadhiprananda@gmail.com" FontSize="16" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Start"/>

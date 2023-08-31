@@ -28,6 +28,10 @@ namespace XMiniApp.ViewModels
             set { SetProperty(ref title, value); }
         }
 
+        public BaseViewModel()
+        {
+        }
+
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName] string propertyName = "",
             Action onChanged = null)
