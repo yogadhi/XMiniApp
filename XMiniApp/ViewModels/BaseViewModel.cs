@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
-
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 using XMiniApp.Models;
@@ -19,6 +21,13 @@ namespace XMiniApp.ViewModels
         {
             get { return isBusy; }
             set { SetProperty(ref isBusy, value); }
+        }
+
+        string _LoadingMessage = "A task is in progress.";
+        public string LoadingMessage
+        {
+            get { return _LoadingMessage; }
+            set { SetProperty(ref _LoadingMessage, value); }
         }
 
         string title = string.Empty;
@@ -56,5 +65,7 @@ namespace XMiniApp.ViewModels
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+
+        
     }
 }

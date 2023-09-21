@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using XMiniApp.Models;
 using Newtonsoft.Json;
 using XMiniApp.Controllers;
+using XMiniApp.DependencyServices;
 
 namespace XMiniApp.ViewModels
 {
@@ -116,6 +117,7 @@ namespace XMiniApp.ViewModels
         async Task ExecuteLoadCommand()
         {
             IsBusy = true;
+            await Task.Delay(3000);
 
             try
             {
@@ -215,6 +217,21 @@ namespace XMiniApp.ViewModels
                 Debug.WriteLine(ex);
             }
             return resOTP;
+        }
+
+        ICommand _CopyClipboardCommand;
+        public ICommand CopyClipboardCommand => _CopyClipboardCommand ?? (_CopyClipboardCommand = new Command(async () => await ExecuteCopyClipboardCommand()));
+        async Task ExecuteCopyClipboardCommand()
+        {
+            try
+            {
+                await Clipboard.SetTextAsync(CurrentOTP);
+                DependencyService.Get<IDeviceLinkedService>().LongAlert(CurrentOTP + " copied to clipboard");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
         }
     }
 }

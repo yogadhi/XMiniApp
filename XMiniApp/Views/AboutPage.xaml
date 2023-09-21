@@ -4,7 +4,8 @@
              x:Class="XMiniApp.Views.AboutPage"
              xmlns:vm="clr-namespace:XMiniApp.ViewModels"
              xmlns:xfpinview="clr-namespace:XFPINView;assembly=XFPINView"
-             xmlns:control="clr-namespace:ProgressRingControl.Forms.Plugin;assembly=ProgressRing.Forms.Plugin"
+             xmlns:control="clr-namespace:ProgressRingControl.Forms.Plugin;assembly=ProgressRing.Forms.Plugin" 
+             xmlns:helpers="clr-namespace:XMiniApp.Helpers"
              Title="{Binding Title}">
     <ContentPage.BindingContext>
         <vm:AboutViewModel />
@@ -27,7 +28,6 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            
 
             <!--<StackLayout Grid.Row="0" BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -35,10 +35,34 @@
                 </ContentView>
             </StackLayout>-->
 
-            <Label Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding CTimer}" TextColor="Black" FontSize="70"/>
-            <control:ProgressRing Margin="10,10" Grid.Row="1" HeightRequest="200" HorizontalOptions="Start" RingThickness="10" RingProgressColor="{Binding ProgressColor}" AnimationEasing="BounceOut" AnimatedProgress="{Binding Progress,Mode=TwoWay}" />
+            <StackLayout Grid.Row="0" 
+                         Grid.RowSpan="3"
+                         VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="CenterAndExpand"
+                         IsVisible="{Binding IsBusy}">
+                <ActivityIndicator x:Name="styledActivityIndicator"
+                                   Color="{StaticResource Primary}"
+                                   WidthRequest="50"
+                                   HeightRequest="50"
+                                   IsRunning="{Binding IsBusy}"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="CenterAndExpand" />
+                <Label Text="{Binding LoadingMessage}"
+                       TextColor="{StaticResource Primary}"
+                       FontSize="20"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
 
-            <StackLayout Grid.Row="2" Padding="10,10">
+
+
+            <Label IsVisible="{Binding IsBusy,Converter={helpers:InverseBoolConverter}}" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding CTimer}" TextColor="Black" FontSize="70"/>
+            <control:ProgressRing IsVisible="{Binding IsBusy,Converter={helpers:InverseBoolConverter}}" Margin="10,10" Grid.Row="1" HeightRequest="200" HorizontalOptions="Start" RingThickness="10" RingProgressColor="{Binding ProgressColor}" AnimationEasing="BounceOut" AnimatedProgress="{Binding Progress,Mode=TwoWay}" />
+
+            <StackLayout IsVisible="{Binding IsBusy,Converter={helpers:InverseBoolConverter}}" Grid.Row="2" Padding="10,10">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CopyClipboardCommand}" NumberOfTapsRequired="1"/>
+                </StackLayout.GestureRecognizers>
                 <Label TextColor="Black" Text="Google:yogadhiprananda@gmail.com" FontSize="16" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Start"/>
                 <xfpinview:PINView x:Name="existingPINView"
                                    BoxFocusAnimation="ZoomInOut"
